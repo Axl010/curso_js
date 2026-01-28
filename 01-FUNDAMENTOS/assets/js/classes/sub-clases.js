@@ -43,11 +43,21 @@ class Persona {
     }
 }
 
-const spiderman = new Persona('Peter Parker', 'Spiderman', 'Soy tu amigable vecino Spiderman');
-spiderman.miFrase();
+class Heroe extends Persona {
+    clan = "sin clan";
 
-spiderman.setComidaFavorita = 'EL pie de cereza de la tía May';
+    constructor(nombre, codigo, frase) {
+        super(nombre, codigo, frase); // Hace referencia a la clase extendida
+
+        this.clan = 'Los Avengers';
+    }
+
+    quienSoy() {
+        console.log(`Soy ${this.nombre}, ${this.clan}`);
+        super.quienSoy(); // Llamar clase extendida con el mismo nombre
+    }
+}
+
+const spiderman = new Heroe('Peter Parker', 'Spiderman', 'Soy tu amigable vecino Spiderman');
 console.log(spiderman);
-console.log(`Conteo Estático: `, Persona._conteo);
-console.log(Persona.conteo);
-Persona.mensaje();
+spiderman.quienSoy();
