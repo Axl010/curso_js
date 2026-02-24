@@ -41,7 +41,7 @@ async function cargarDashboard() {
     const [user, posts, comments] = await Promise.all([
         fetchUser(),
         fetchPosts(),
-        fetchComments();
+        fetchComments(),
     ]);
 
     return { user, posts, comments };
