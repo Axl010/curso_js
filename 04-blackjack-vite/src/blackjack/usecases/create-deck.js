@@ -8,7 +8,7 @@ export const carta = 'A';
  * @param {Array<String>} tiposEspeciales Ejemplo: ['A','J','Q','K']
  * @returns {Array<String>} retorna un nuevo deck de cartas
  */
-const crearDeck = (tiposDeCarta, tiposEspeciales) => {
+export const crearDeck = (tiposDeCarta, tiposEspeciales) => {
 
     if ( !tiposDeCarta || tiposDeCarta.length === 0)
         throw new Error('TiposDeCarta es obligatorio como un arreglo de string');
@@ -34,5 +34,3 @@ const crearDeck = (tiposDeCarta, tiposEspeciales) => {
 
     return deck;
 }
-
-export default crearDeck;
