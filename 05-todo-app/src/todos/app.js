@@ -28,6 +28,7 @@ export const App = ( elementId ) => {
 
     // Referencias HTMl
     const newDescriptionInput = document.querySelector( ElementIDs.NewTodoInput );
+    const todoListUrl = document.querySelector( ElementIDs.TodoList );
 
     // Listeners
     newDescriptionInput.addEventListener('keyup', ( event ) => {
@@ -37,5 +38,20 @@ export const App = ( elementId ) => {
         todoStore.addTodo( event.target.value );
         displayTodos();
         event.target.value = '';
+    });
+
+    todoListUrl.addEventListener('click', (event) => {
+        const element = event.target.closest('[data-id');
+        todoStore.toggleTodo( element.getAttribute('data-id') );
+        displayTodos();
+    });
+
+    todoListUrl.addEventListener('click', (event) => {
+        const isDestroyElement = event.target.className === 'destroy';
+        const element = event.target.closest('[data-id]')
+        if ( !isDestroyElement ) return;
+
+        todoStore.deleteTodo( element.getAttribute('data-id') );
+        displayTodos();
     })
 }
