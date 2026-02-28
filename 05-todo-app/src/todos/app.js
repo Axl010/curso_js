@@ -1,12 +1,13 @@
 import html from './app.html?raw'
 import todoStore from '../store/todo.store'
-import { renderTodos } from './use-cases';
+import { renderTodos, renderPending } from './use-cases';
 
 const ElementIDs = {
     ClearCompletedButton: '.clear-completed',
     TodoList: '.todo-list',
     NewTodoInput: '#new-todo-input',
     TodoFilters: '.filtro',
+    PendingCountLabel: '#pending-count',
 }
 
 /**
@@ -21,7 +22,7 @@ export const App = ( elementId ) => {
     }
 
     const updatePendingCount = () => {
-        
+        renderPending( ElementIDs.PendingCountLabel );
     }
 
     // Cuando la funcion App() se llama
@@ -45,6 +46,7 @@ export const App = ( elementId ) => {
 
         todoStore.addTodo( event.target.value );
         displayTodos();
+        updatePendingCount();
         event.target.value = '';
     });
 
@@ -52,6 +54,7 @@ export const App = ( elementId ) => {
         const element = event.target.closest('[data-id');
         todoStore.toggleTodo( element.getAttribute('data-id') );
         displayTodos();
+        updatePendingCount();
     });
 
     todoListUrl.addEventListener('click', (event) => {
@@ -61,11 +64,13 @@ export const App = ( elementId ) => {
 
         todoStore.deleteTodo( element.getAttribute('data-id') );
         displayTodos();
+        updatePendingCount();
     })
 
     clearCompletedButton.addEventListener( 'click', () => {
         todoStore.deleteCompleted();
         displayTodos();
+        updatePendingCount();
     })
 
     filtersLIs.forEach( element => {
