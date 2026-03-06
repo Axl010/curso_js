@@ -1,7 +1,7 @@
 import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
-import { asyncAwaitComponent } from './concepts/06-async-await'
+import { forAwaitComponent } from './concepts/08-for-await'
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -13,7 +13,6 @@ document.querySelector('#app').innerHTML = `
     </a>
     <h1>Hello Vite!</h1>
     <div class="card">
-      <button id="counter" type="button"></button>
     </div>
   </div>
 `
@@ -24,4 +23,6 @@ const element = document.querySelector('.card');
 // promiseComponent( element );
 // promiseRaceComponent( element );
 // asyncComponent( element );
-asyncAwaitComponent( element );
+// asyncAwaitComponent( element );
+// asyncAwait2Component( element );
+forAwaitComponent( element );
